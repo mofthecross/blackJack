@@ -35,6 +35,9 @@ class Deck {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  drawCard() {
+    return this.cards.pop();
+  }
 
 }
 
@@ -64,3 +67,4 @@ testDeckClass.shuffle();
 const shuffledFirstCard = testDeckClass.cards[0];
 const shuffledlastCard = testDeckClass.cards[52-1];
 console.log('Deck should have a shuffle method that works:', firstCard !== shuffledFirstCard &&  lastCard !== shuffledlastCard);
+console.log('Deck should have a drawCard method', typeof testDeckClass.shuffle === 'function');
