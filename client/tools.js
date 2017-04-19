@@ -79,7 +79,19 @@ class Player {
   }
 }
 
-class Dealer {}
+class Dealer extends Player {
+  constructor(name) {
+    super(name)
+  }
+
+  deal(deck, player) {
+    player.hit(deck);
+    if (player.name === this.name) {
+      this.hit(deck);
+    }
+  }
+}
+
 
 class Game {}
 
@@ -105,8 +117,6 @@ const shuffledlastCard = testDeckClass.cards[52-1];
 console.log('Deck should have a shuffle method that works:', firstCard !== shuffledFirstCard &&  lastCard !== shuffledlastCard);
 console.log('Deck should have a drawCard method:', typeof testDeckClass.shuffle === 'function');
 
-*/
-
 const testPlayerClass = new Player('michael');
 console.log('Player class exists:', testPlayerClass.name === 'michael');
 const newDeck = new Deck();
@@ -115,6 +125,9 @@ newDeck.shuffle();
 testPlayerClass.hit(newDeck);
 testPlayerClass.hit(newDeck);
 testPlayerClass.hit(newDeck);
-
-
 console.log('Player class should have card when hit method is invoked ',  testPlayerClass.hand.length > 0);
+
+*/
+
+const testDealerClass = new Dealer('john');
+console.log('Dealer class exists:', testDealerClass.name === 'john');
