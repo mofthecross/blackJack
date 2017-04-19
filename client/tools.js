@@ -41,7 +41,17 @@ class Deck {
 
 }
 
-class Player {}
+class Player {
+  constructor(name) {
+    this.name = name;
+    this.score = null;
+    this.hand = [];
+  }
+  hit(deck) {
+    const card = deck.drawCard();
+    this.hand.push(card);
+  }
+}
 
 class Dealer {}
 
@@ -50,13 +60,13 @@ class Game {}
 /* test
 
 const testCardClass = new Card('Diamonds', 8);
-console.log('testCardClass', testCardClass);
-console.log('testCardClass value should be 8:', testCardClass.value === 8);
-console.log('testCardClass suite should be Diamonds:', testCardClass.suite === 'Diamonds');
-*/
+console.log('Card class', testCardClass);
+console.log('Card class value should be 8:', testCardClass.value === 8);
+console.log('Card class suite should be Diamonds:', testCardClass.suite === 'Diamonds');
+
 
 const testDeckClass = new Deck();
-console.log('testDeckClass:', testDeckClass);
+console.log('Deck class:', testDeckClass);
 testDeckClass.build();
 console.log('Deck should build 52 cards:', testDeckClass.cards.length === 52);
 const firstCard = testDeckClass.cards[0];
@@ -67,4 +77,14 @@ testDeckClass.shuffle();
 const shuffledFirstCard = testDeckClass.cards[0];
 const shuffledlastCard = testDeckClass.cards[52-1];
 console.log('Deck should have a shuffle method that works:', firstCard !== shuffledFirstCard &&  lastCard !== shuffledlastCard);
-console.log('Deck should have a drawCard method', typeof testDeckClass.shuffle === 'function');
+console.log('Deck should have a drawCard method:', typeof testDeckClass.shuffle === 'function');
+
+*/
+
+const testPlayerClass = new Player('michael');
+console.log('Player class exists:', testPlayerClass.name === 'michael');
+const newDeck = new Deck();
+newDeck.build();
+newDeck.shuffle();
+testPlayerClass.hit(newDeck)
+console.log('Player class should have card when hit method is invoked ',  testPlayerClass.hand.length > 0);
