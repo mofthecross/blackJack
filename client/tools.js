@@ -92,7 +92,6 @@ class Dealer extends Player {
   }
 }
 
-
 class Game {}
 
 /* test
@@ -127,7 +126,7 @@ testPlayerClass.hit(newDeck);
 testPlayerClass.hit(newDeck);
 console.log('Player class should have card when hit method is invoked ',  testPlayerClass.hand.length > 0);
 
-*/
-
 const testDealerClass = new Dealer('john');
 console.log('Dealer class exists:', testDealerClass.name === 'john');
+
+*/
