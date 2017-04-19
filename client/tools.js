@@ -85,9 +85,10 @@ class Dealer extends Player {
   }
 
   deal(deck, player) {
-    player.hit(deck);
     if (player.name === this.name) {
       this.hit(deck);
+    } else {
+      player.hit(deck);
     }
   }
 }
