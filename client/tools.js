@@ -45,11 +45,37 @@ class Player {
   constructor(name) {
     this.name = name;
     this.score = null;
+    this.play = true;
     this.hand = [];
   }
+
   hit(deck) {
     const card = deck.drawCard();
     this.hand.push(card);
+    this.calcScore(card);
+  }
+
+  calcScore(card) {
+    if (typeof card.value === 'string') {
+
+      if (card.value === 'A') {
+
+        this.score = (this.score + 11) > 21
+          ? this.score + 1
+          : this.score + 11
+
+      } else {
+        this.score += 10;
+      }
+
+    } else {
+      this.score += card.value;
+    }
+
+    if (this.score > 21) {
+      this.play = false;
+      console.log('busted!');
+    }
   }
 }
 
@@ -86,5 +112,9 @@ console.log('Player class exists:', testPlayerClass.name === 'michael');
 const newDeck = new Deck();
 newDeck.build();
 newDeck.shuffle();
-testPlayerClass.hit(newDeck)
+testPlayerClass.hit(newDeck);
+testPlayerClass.hit(newDeck);
+testPlayerClass.hit(newDeck);
+
+
 console.log('Player class should have card when hit method is invoked ',  testPlayerClass.hand.length > 0);
